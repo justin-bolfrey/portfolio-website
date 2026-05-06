@@ -1,0 +1,202 @@
+---
+const steps = [
+  {
+    n: "01",
+    t: "Gespräch",
+    d: "30 Minuten am Telefon oder vor Ort. Ich höre zu, Sie erzählen — keine Verkaufsfolien.",
+    when: "Tag 1",
+    accent: "Wir lernen uns kennen.",
+  },
+  {
+    n: "02",
+    t: "Konzept & Design",
+    d: "Sie sehen Ihre neue Website als Figma-Entwurf, bevor ich eine einzige Zeile Code schreibe.",
+    when: "Woche 1–2",
+    accent: "Bevor irgendetwas gebaut wird.",
+  },
+  {
+    n: "03",
+    t: "Entwicklung",
+    d: "Sauberer Code, getestet auf allen Geräten. Sie bekommen einen Zwischenstand zur Vorschau.",
+    when: "Woche 2–3",
+    accent: "Sie schauen ständig mit.",
+  },
+  {
+    n: "04",
+    t: "Go-Live & Pflege",
+    d: "Die Seite geht online, ich übernehme Hosting, Backups und Monitoring. Sie machen Ihren Job.",
+    when: "ab Woche 4",
+    accent: "Und es bleibt nicht bei einem Launch.",
+  },
+];
+
+const total = steps.length;
+---
+
+<section
+  id="prozess"
+  class="relative scroll-mt-20 process-section"
+  style={`min-height: ${total * 100}vh`}
+  data-process-stage
+>
+  <div class="sticky top-0 h-screen overflow-hidden flex flex-col bg-[var(--color-bg)]">
+    <div class="container-page pt-24 md:pt-28 pb-6 md:pb-8 shrink-0">
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <div class="max-w-2xl">
+          <span class="eyebrow">Kap. 04 · Prozess</span>
+          <h2
+            class="mt-5 font-display text-3xl md:text-5xl leading-[1.05] tracking-tight"
+          >
+            In vier Schritten<br />vom Briefing zur Live-Seite.
+          </h2>
+        </div>
+        <div class="flex items-center gap-4 text-sm text-[var(--color-ink-soft)]">
+          <span data-process-counter class="font-display text-3xl text-[var(--color-ink)] tabular-nums">01</span>
+          <span class="opacity-60">/ {String(total).padStart(2, "0")}</span>
+          <div class="h-px w-32 md:w-48 bg-[var(--color-line)] relative overflow-hidden">
+            <div data-process-bar class="absolute inset-y-0 left-0 w-0 bg-[var(--color-accent)]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-1 relative overflow-hidden">
+      <div
+        data-process-track
+        class="absolute inset-0 flex will-change-transform"
+        style={`width: ${total * 100}%`}
+      >
+        {
+          steps.map((s, i) => (
+            <div
+              data-process-step
+              data-step-index={i}
+              class="relative h-full grid place-items-center px-5 md:px-12"
+              style={`width: ${100 / total}%`}
+            >
+              <div class="container-page grid lg:grid-cols-[auto_1fr] gap-10 md:gap-16 items-center">
+                <div
+                  aria-hidden="true"
+                  class="font-display text-[clamp(8rem,22vw,20rem)] leading-[0.85] tracking-tighter text-[var(--color-line)] select-none transition-colors duration-700"
+                  data-step-number
+                >
+                  {s.n}
+                </div>
+                <div class="max-w-xl">
+                  <div class="flex items-center gap-3 text-xs uppercase tracking-widest text-[var(--color-ink-soft)]">
+                    <span class="h-px w-10 bg-[var(--color-accent)]" />
+                    {s.when}
+                  </div>
+                  <h3 class="font-display text-4xl md:text-6xl tracking-tight mt-6 leading-[1.02]">
+                    {s.t}
+                  </h3>
+                  <p class="font-display italic text-xl md:text-2xl text-[var(--color-accent)] mt-4">
+                    {s.accent}
+                  </p>
+                  <p class="mt-6 text-lg text-[var(--color-ink-soft)] leading-relaxed">
+                    {s.d}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="container-page pb-8 md:pb-10 shrink-0 flex items-center justify-between text-xs uppercase tracking-widest text-[var(--color-ink-soft)]">
+      <span class="flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 5v14"/><path d="m5 12 7 7 7-7"/>
+        </svg>
+        Scrollen
+      </span>
+      <div class="flex items-center gap-2">
+        {
+          steps.map((_, i) => (
+            <span
+              data-step-dot
+              data-dot-index={i}
+              class="h-1.5 w-6 rounded-full bg-[var(--color-line)] transition-colors duration-300"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  type StepEl = HTMLElement;
+
+  const stage = document.querySelector<HTMLElement>("[data-process-stage]");
+  if (stage) {
+    const track = stage.querySelector<HTMLElement>("[data-process-track]");
+    const counter = stage.querySelector<HTMLElement>("[data-process-counter]");
+    const bar = stage.querySelector<HTMLElement>("[data-process-bar]");
+    const dots = Array.from(stage.querySelectorAll<HTMLElement>("[data-step-dot]"));
+    const steps = Array.from(stage.querySelectorAll<StepEl>("[data-process-step]"));
+    const total = steps.length;
+
+    if (track && total > 0) {
+      let raf = 0;
+      const update = () => {
+        const rect = stage.getBoundingClientRect();
+        const scrollable = stage.offsetHeight - window.innerHeight;
+        const scrolled = -rect.top;
+        const progress = Math.max(0, Math.min(1, scrolled / scrollable));
+
+        const maxShift = ((total - 1) / total) * 100;
+        track.style.transform = `translate3d(-${progress * maxShift}%, 0, 0)`;
+
+        const activeIndex = Math.min(total - 1, Math.floor(progress * total + 0.0001));
+        if (counter) counter.textContent = String(activeIndex + 1).padStart(2, "0");
+        if (bar) bar.style.width = `${progress * 100}%`;
+
+        dots.forEach((d, i) => {
+          const isActive = i === activeIndex;
+          d.style.backgroundColor = isActive
+            ? "var(--color-accent)"
+            : "var(--color-line)";
+        });
+
+        steps.forEach((s, i) => {
+          const numEl = s.querySelector<HTMLElement>("[data-step-number]");
+          if (!numEl) return;
+          numEl.style.color = i === activeIndex
+            ? "oklch(94% 0.04 45)"
+            : "var(--color-line)";
+        });
+
+        raf = 0;
+      };
+
+      const onScroll = () => {
+        if (raf) return;
+        raf = requestAnimationFrame(update);
+      };
+
+      update();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+    }
+  }
+</script>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .process-section {
+      min-height: auto !important;
+    }
+    .process-section [data-process-track] {
+      position: static;
+      flex-direction: column;
+      width: 100% !important;
+      transform: none !important;
+    }
+    .process-section [data-process-step] {
+      width: 100% !important;
+      padding: 3rem 0;
+    }
+  }
+</style>

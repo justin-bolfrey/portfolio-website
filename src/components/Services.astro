@@ -1,0 +1,112 @@
+---
+const services = [
+  {
+    n: "01",
+    title: "Webdesign & Konzept",
+    body: "Klares Layout, ehrliche Typografie, kein visueller Lärm. Ich entwerfe für Ihre Kunden — nicht für Awards.",
+    points: ["Wireframes & Moodboards", "Designsystem in Figma", "Mobile-First & Responsive"],
+  },
+  {
+    n: "02",
+    title: "Entwicklung",
+    body: "Statisch generiert mit Astro. Bedeutet: Ladezeiten unter 2 Sekunden, perfekt für Google.",
+    points: ["Astro + Tailwind CSS", "SEO & Strukturierte Daten", "Self-hosted Fonts (DSGVO)"],
+  },
+  {
+    n: "03",
+    title: "Hosting & Pflege",
+    body: "Server in Deutschland, SSL inklusive, DSGVO-konform. Updates, Backups, Monitoring — alles geräuschlos im Hintergrund.",
+    points: [
+      "Hetzner-Server in Falkenstein & Nürnberg",
+      "SSL-Zertifikat automatisch erneuert",
+      "Tägliche Backups & Telegram-Alerts",
+    ],
+  },
+  {
+    n: "04",
+    title: "Inhalt & Texte",
+    body: "Auf Wunsch übernehme ich auch die Texte. Kurz, ehrlich, lokal verstanden.",
+    points: ["Copywriting für KMU", "SEO-Keywords vor Ort", "Bildauswahl & Lizenzen"],
+  },
+];
+---
+
+<section
+  id="leistungen"
+  class="py-28 md:py-40 scroll-mt-20 bg-[var(--color-surface)] border-y border-[var(--color-line)]"
+>
+  <div class="container-page grid lg:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-start">
+    <div class="lg:sticky lg:top-24">
+      <span class="eyebrow reveal">Kap. 03 · Leistungen</span>
+      <h2
+        class="reveal reveal-delay-1 mt-6 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight"
+      >
+        Vier Bausteine.<br />Ein klares Ergebnis.
+      </h2>
+      <p class="reveal reveal-delay-2 mt-6 text-lg text-[var(--color-ink-soft)] max-w-md leading-relaxed">
+        Alles aus einer Hand — Design, Code, Hosting und Texte. Ohne Agentur-Aufschlag,
+        ohne Subunternehmer, ohne Wartezeit.
+      </p>
+      <div class="reveal reveal-delay-3 mt-8 inline-flex items-center gap-3 text-sm text-[var(--color-ink-soft)]">
+        <span class="h-px w-8 bg-[var(--color-accent)]" />
+        Scrollen Sie weiter — die Karten stapeln sich
+      </div>
+    </div>
+
+    <div class="services-deck space-y-4 md:space-y-6">
+      {
+        services.map((s, i) => (
+          <article
+            class="services-card group relative bg-[var(--color-bg)] border border-[var(--color-line)] rounded-2xl p-7 md:p-10 transition-all duration-300 hover:border-[var(--color-ink)]"
+            style={`--i: ${i};`}
+          >
+            <div class="flex items-start justify-between gap-4">
+              <span class="font-display text-sm tracking-widest text-[var(--color-ink-soft)]">
+                {s.n}
+              </span>
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="text-[var(--color-ink-soft)] group-hover:text-[var(--color-accent)] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300"
+              >
+                <path d="M7 17 17 7" /><path d="M8 7h9v9" />
+              </svg>
+            </div>
+            <h3 class="font-display text-2xl md:text-3xl mt-6 tracking-tight">{s.title}</h3>
+            <p class="mt-4 text-[var(--color-ink-soft)] leading-relaxed">{s.body}</p>
+            <ul class="mt-6 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
+              {s.points.map((p) => (
+                <li class="flex items-center gap-2.5 text-[var(--color-ink-soft)]">
+                  <span class="h-1.5 w-1.5 rounded-full bg-[var(--color-accent)]" />
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    .services-deck .services-card {
+      position: sticky;
+      top: calc(6rem + var(--i) * 1.25rem);
+      box-shadow: 0 -1px 0 0 var(--color-line), 0 30px 60px -40px oklch(20% 0.015 250 / 0.25);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .services-deck .services-card {
+      position: static;
+    }
+  }
+</style>

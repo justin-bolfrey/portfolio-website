@@ -1,0 +1,60 @@
+---
+---
+
+<section class="relative overflow-hidden pt-20 md:pt-28 pb-24 md:pb-32">
+  <div aria-hidden="true" class="absolute inset-0 grid-bg pointer-events-none hero-parallax-slow"></div>
+
+  <div class="container-page relative">
+    <div class="max-w-3xl hero-parallax-fast">
+      <span class="eyebrow reveal">Webdesign-Studio · Region</span>
+
+      <h1
+        class="reveal reveal-delay-1 font-display mt-6 text-[clamp(2.6rem,6.5vw,5.5rem)] leading-[1.02] font-medium tracking-tight"
+      >
+        Websites, die Ihr<br/>
+        <span class="italic text-[var(--color-accent)]">Unternehmen</span> ernst nehmen.
+      </h1>
+
+      <p
+        class="reveal reveal-delay-2 mt-8 text-lg md:text-xl text-[var(--color-ink-soft)] max-w-2xl leading-relaxed"
+      >
+        Maßgeschneidertes Design für Arztpraxen, Kanzleien, Handwerk & Gastronomie —
+        <strong class="text-[var(--color-ink)] font-medium">Entwicklung und Hosting aus einer Hand</strong>.
+        SSL inklusive, Server in Deutschland, DSGVO-konform.
+      </p>
+
+      <div class="reveal reveal-delay-3 mt-10 flex flex-wrap gap-3 items-center">
+        <a href="/#kontakt" class="btn btn-primary">
+          Projekt anfragen
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="/#arbeiten" class="btn btn-ghost">Arbeiten ansehen</a>
+      </div>
+    </div>
+
+    <div
+      class="reveal reveal-delay-4 mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 md:gap-x-12 max-w-4xl"
+    >
+      {[
+        { k: 12, suffix: "+", v: "Projekte ausgeliefert" },
+        { k: 100, suffix: "", v: "Lighthouse-Score angepeilt" },
+        { k: 2, prefix: "<", suffix: "s", v: "Ladezeit auf 4G" },
+        { k: 1, suffix: ":1", v: "Direkter Ansprechpartner" }
+      ].map((s) => (
+        <div>
+          <div
+            class="font-display text-3xl md:text-4xl tracking-tight tabular-nums"
+            data-count-to={s.k}
+            data-count-suffix={s.suffix}
+            data-count-prefix={s.prefix ?? ""}
+          >
+            {s.prefix ?? ""}0{s.suffix}
+          </div>
+          <div class="mt-1 text-sm text-[var(--color-ink-soft)]">{s.v}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

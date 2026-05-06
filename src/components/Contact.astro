@@ -1,0 +1,102 @@
+---
+---
+
+<section id="kontakt" class="py-24 md:py-32 scroll-mt-20">
+  <div class="container-page">
+    <div
+      data-cursor-glow
+      class="rounded-3xl bg-[var(--color-ink)] text-[var(--color-bg)] overflow-hidden relative"
+    >
+      <div
+        aria-hidden="true"
+        class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-[var(--color-accent)]/30 blur-3xl"
+      ></div>
+
+      <div class="relative grid md:grid-cols-[1.2fr_1fr] gap-12 md:gap-16 p-8 md:p-16">
+        <div>
+          <span class="eyebrow reveal" style="color: oklch(85% 0.015 250)">Kap. 06 · Kontakt</span>
+          <h2
+            class="reveal reveal-delay-1 mt-5 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight"
+          >
+            Lassen Sie uns über<br/>Ihr Projekt reden.
+          </h2>
+          <p class="reveal reveal-delay-2 mt-6 text-lg leading-relaxed opacity-80 max-w-md">
+            Erzählen Sie kurz, worum es geht. Sie bekommen innerhalb von 24 Stunden
+            eine Antwort — keine Hotline, keine Tickets, keine Standardfloskeln.
+          </p>
+
+          <ul class="reveal reveal-delay-3 mt-10 space-y-4 text-sm">
+            <li class="flex items-center gap-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="opacity-60">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+              <a href="mailto:hallo@bolfrey.studio" class="hover:text-[var(--color-accent)]">hallo@bolfrey.studio</a>
+            </li>
+            <li class="flex items-center gap-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="opacity-60">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <a href="tel:+49000000000" class="hover:text-[var(--color-accent)]">+49 (0) 000 0000000</a>
+            </li>
+            <li class="flex items-center gap-4">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="opacity-60">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <span>Mainfranken — Termine vor Ort möglich</span>
+            </li>
+          </ul>
+        </div>
+
+        <form
+          method="POST"
+          action="#"
+          class="reveal reveal-delay-2 bg-[var(--color-bg)] text-[var(--color-ink)] rounded-2xl p-6 md:p-8 space-y-4"
+        >
+          <div>
+            <label for="name" class="block text-xs uppercase tracking-widest text-[var(--color-ink-soft)] mb-2">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full bg-transparent border-b border-[var(--color-line)] py-2 focus:outline-none focus:border-[var(--color-ink)] transition-colors"
+              placeholder="Ihr Name"
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-xs uppercase tracking-widest text-[var(--color-ink-soft)] mb-2">E-Mail</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full bg-transparent border-b border-[var(--color-line)] py-2 focus:outline-none focus:border-[var(--color-ink)] transition-colors"
+              placeholder="ihre@email.de"
+            />
+          </div>
+          <div>
+            <label for="message" class="block text-xs uppercase tracking-widest text-[var(--color-ink-soft)] mb-2">Worum geht's?</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              class="w-full bg-transparent border-b border-[var(--color-line)] py-2 focus:outline-none focus:border-[var(--color-ink)] transition-colors resize-none"
+              placeholder="Erzählen Sie kurz vom Projekt..."
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-full justify-center mt-4">
+            Anfrage senden
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </button>
+          <p class="text-xs text-[var(--color-ink-soft)] text-center">
+            Mit dem Absenden akzeptieren Sie unsere
+            <a href="/datenschutz" class="underline hover:text-[var(--color-ink)]">Datenschutzerklärung</a>.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

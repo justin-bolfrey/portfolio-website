@@ -1,0 +1,50 @@
+---
+interface Props {
+  quote: string;
+  attribution?: string;
+  variant?: "light" | "dark";
+}
+
+const { quote, attribution, variant = "light" } = Astro.props;
+const isDark = variant === "dark";
+---
+
+<section
+  data-cursor-glow={isDark ? "" : undefined}
+  class:list={[
+    "py-28 md:py-40 relative overflow-hidden",
+    isDark
+      ? "bg-[var(--color-ink)] text-[var(--color-bg)]"
+      : "bg-[var(--color-bg)] text-[var(--color-ink)]",
+  ]}
+>
+  {
+    isDark && (
+      <div
+        aria-hidden="true"
+        class="absolute inset-0 grid place-items-center pointer-events-none"
+      >
+        <div class="font-display italic text-[20vw] leading-none opacity-[0.04] select-none">
+          „
+        </div>
+      </div>
+    )
+  }
+
+  <div class="container-page relative">
+    <blockquote class="max-w-4xl mx-auto text-center">
+      <p
+        class="reveal font-display text-3xl md:text-5xl lg:text-6xl tracking-tight leading-[1.1]"
+      >
+        <span class="opacity-30 mr-1">„</span><span set:html={quote} /><span class="opacity-30 ml-1">"</span>
+      </p>
+      {
+        attribution && (
+          <footer class="reveal reveal-delay-2 mt-10 text-sm uppercase tracking-[0.18em] opacity-60">
+            — {attribution}
+          </footer>
+        )
+      }
+    </blockquote>
+  </div>
+</section>

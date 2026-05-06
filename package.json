@@ -1,0 +1,26 @@
+{
+  "name": "musterwebsite",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "@tailwindcss/vite": "^4.1.7",
+    "astro": "^6.2.2",
+    "tailwindcss": "^4.1.7"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^5.7.3"
+  },
+  "overrides": {
+    "vite": "^7"
+  }
+}

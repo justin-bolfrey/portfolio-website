@@ -1,0 +1,80 @@
+---
+const pillars = [
+  {
+    icon: "shield",
+    title: "SSL-Verschlüsselung inklusive",
+    body: "Jede Website läuft ab Tag eins über HTTPS — automatisch erneuerte Let's-Encrypt-Zertifikate, ohne Aufpreis, ohne Bastelei.",
+  },
+  {
+    icon: "server",
+    title: "Server in Deutschland",
+    body: "Hosting bei Hetzner in Falkenstein und Nürnberg. Keine US-Cloud, keine Datenreise, kein Cookie-Banner-Theater.",
+  },
+  {
+    icon: "check",
+    title: "Voll DSGVO-konform",
+    body: "Self-hosted Fonts, anonymisierte Logs, Auftragsverarbeitungsvertrag inklusive. Sie sind rechtlich auf der sicheren Seite.",
+  },
+];
+---
+
+<section id="versprechen" class="py-28 md:py-40 scroll-mt-20 relative overflow-hidden">
+  <div
+    aria-hidden="true"
+    class="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[var(--color-ink)] to-transparent opacity-[0.02] pointer-events-none"
+  ></div>
+
+  <div class="container-page">
+    <div class="max-w-3xl">
+      <span class="eyebrow reveal">Kap. 02 · Versprechen</span>
+      <h2
+        class="reveal reveal-delay-1 mt-6 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight"
+      >
+        Entwicklung <span class="italic text-[var(--color-accent)]">und</span> Hosting —
+        kein Suchen, kein Schwarzer-Peter-Spiel.
+      </h2>
+      <p class="reveal reveal-delay-2 mt-6 text-lg text-[var(--color-ink-soft)] max-w-2xl leading-relaxed">
+        Sie bekommen Website und Server-Pflege als Paket. Wenn etwas hakt, ist klar
+        wer verantwortlich ist — ich. Keine Tickets bei Strato, keine Telefonschleife
+        bei IONOS.
+      </p>
+    </div>
+
+    <div class="mt-12 md:mt-16 grid md:grid-cols-3 gap-6 md:gap-8">
+      {
+        pillars.map((p, i) => (
+          <div
+            class={`reveal reveal-delay-${i + 1} relative bg-[var(--color-surface)] border border-[var(--color-line)] rounded-2xl p-7 md:p-8`}
+          >
+            <div class="grid place-items-center h-11 w-11 rounded-xl bg-[var(--color-accent-soft)] text-[var(--color-accent)] mb-6">
+              {p.icon === "shield" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              )}
+              {p.icon === "server" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="7" rx="1.5"/>
+                  <rect x="2" y="14" width="20" height="7" rx="1.5"/>
+                  <line x1="6" y1="6.5" x2="6.01" y2="6.5"/>
+                  <line x1="6" y1="17.5" x2="6.01" y2="17.5"/>
+                </svg>
+              )}
+              {p.icon === "check" && (
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              )}
+            </div>
+            <h3 class="font-display text-xl tracking-tight">{p.title}</h3>
+            <p class="mt-3 text-[var(--color-ink-soft)] leading-relaxed text-[0.97rem]">
+              {p.body}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

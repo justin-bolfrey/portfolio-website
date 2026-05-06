@@ -1,0 +1,105 @@
+---
+const points = [
+  {
+    n: "01",
+    title: "Sie laden zu langsam.",
+    body: "Drei von vier Besuchern springen ab, wenn eine Seite länger als drei Sekunden braucht. Bei Baukasten-Websites sind acht Sekunden keine Seltenheit.",
+    metric: 75,
+    metricSuffix: "%",
+    metricLabel: "springen ab",
+  },
+  {
+    n: "02",
+    title: "Sie funktionieren auf dem Handy nicht.",
+    body: "Über 60% Ihrer Besucher kommen vom Smartphone. Wenn das Menü dort wackelt, der Text klebt oder Buttons nicht treffen — sind die Kunden weg.",
+    metric: 60,
+    metricSuffix: "%",
+    metricLabel: "Mobile-Traffic",
+  },
+  {
+    n: "03",
+    title: "Sie verstoßen gegen die DSGVO.",
+    body: "Google Fonts vom CDN, Analytics ohne Consent, Server in den USA. Ein einziger Brief vom Rechtsanwalt kann eine Praxis fünfstellig kosten.",
+    metric: 50,
+    metricSuffix: "k€",
+    metricLabel: "mögliche Strafe",
+  },
+];
+---
+
+<section
+  id="anliegen"
+  data-cursor-glow
+  class="relative py-28 md:py-40 scroll-mt-20 bg-[var(--color-ink)] text-[var(--color-bg)] overflow-hidden"
+>
+  <div
+    aria-hidden="true"
+    class="absolute -top-40 -left-40 h-[36rem] w-[36rem] rounded-full bg-[var(--color-accent)]/15 blur-3xl"
+  ></div>
+  <div
+    aria-hidden="true"
+    class="absolute -bottom-40 -right-40 h-[28rem] w-[28rem] rounded-full bg-[var(--color-accent)]/10 blur-3xl"
+  ></div>
+
+  <div class="container-page relative">
+    <div class="max-w-3xl">
+      <span class="eyebrow reveal" style="color: oklch(75% 0.025 250)">
+        Kap. 01 · Anliegen
+      </span>
+      <h2
+        class="reveal reveal-delay-1 mt-6 font-display text-4xl md:text-6xl leading-[1.02] tracking-tight"
+      >
+        Die meisten Websites scheitern <em class="text-[var(--color-accent)] not-italic">nicht</em>
+        am Design.<br />
+        <span class="opacity-65">Sondern an drei Stellen, die niemand sieht.</span>
+      </h2>
+      <p
+        class="reveal reveal-delay-2 mt-8 text-lg md:text-xl opacity-75 max-w-2xl leading-relaxed"
+      >
+        Sie sehen vielleicht hübsch aus auf dem Bildschirm Ihres Designers — aber dort,
+        wo Ihre Kunden sie wirklich erleben, gehen sie unter.
+      </p>
+    </div>
+
+    <div class="mt-20 md:mt-28 grid md:grid-cols-3 gap-6 md:gap-8">
+      {
+        points.map((p, i) => (
+          <article
+            class={`reveal reveal-delay-${i + 1} relative border-t border-[var(--color-bg)]/20 pt-8`}
+          >
+            <span class="absolute -top-px left-0 h-px w-12 bg-[var(--color-accent)]" />
+
+            <div class="flex items-baseline justify-between gap-4">
+              <span class="font-display text-sm tracking-widest opacity-50">{p.n}</span>
+              <div class="text-right">
+                <div
+                  class="font-display text-4xl tracking-tight text-[var(--color-accent)] tabular-nums"
+                  data-count-to={p.metric}
+                  data-count-suffix={p.metricSuffix}
+                >
+                  0{p.metricSuffix}
+                </div>
+                <div class="text-xs uppercase tracking-widest opacity-55 mt-1">
+                  {p.metricLabel}
+                </div>
+              </div>
+            </div>
+
+            <h3 class="font-display text-2xl md:text-[1.7rem] mt-8 tracking-tight leading-tight">
+              {p.title}
+            </h3>
+            <p class="mt-4 opacity-70 leading-relaxed">{p.body}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-20 md:mt-28 flex items-center gap-4 max-w-2xl">
+      <span class="h-px flex-1 bg-[var(--color-bg)]/20" />
+      <span class="font-display italic text-lg md:text-xl opacity-80">
+        Nichts davon ist Schicksal.
+      </span>
+      <span class="h-px flex-1 bg-[var(--color-bg)]/20" />
+    </div>
+  </div>
+</section>

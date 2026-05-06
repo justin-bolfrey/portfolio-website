@@ -1,0 +1,138 @@
+---
+import "~/styles/global.css";
+import Nav from "~/components/Nav.astro";
+import Footer from "~/components/Footer.astro";
+import ScrollProgress from "~/components/ScrollProgress.astro";
+import ChapterRail from "~/components/ChapterRail.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Justin Bolfrey — Webdesign für regionale Unternehmen",
+  description = "Klare, schnelle Websites für Arztpraxen, Kanzleien, Handwerk & Gastronomie. Maßgeschneidertes Design, technisch sauber, DSGVO-konform.",
+  image = "/og.png",
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://example.com").toString();
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap"
+    />
+
+    <meta name="theme-color" content="#fafaf6" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <ScrollProgress />
+    <ChapterRail />
+    <Nav />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // 1. Reveal-on-scroll
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      );
+
+      // 2. Cursor-tracking glow on dark sections
+      const initCursorGlow = () => {
+        const sections = document.querySelectorAll<HTMLElement>("[data-cursor-glow]");
+        sections.forEach((sec) => {
+          sec.classList.add("cursor-glow");
+
+          let raf = 0;
+          const move = (e: MouseEvent) => {
+            if (raf) return;
+            raf = requestAnimationFrame(() => {
+              const rect = sec.getBoundingClientRect();
+              sec.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+              sec.style.setProperty("--my", `${e.clientY - rect.top}px`);
+              raf = 0;
+            });
+          };
+          sec.addEventListener("mouseenter", () => sec.classList.add("is-tracking"));
+          sec.addEventListener("mouseleave", () => sec.classList.remove("is-tracking"));
+          sec.addEventListener("mousemove", move);
+        });
+      };
+
+      // 3. Count-up on view (data-count-to="75" data-count-suffix="%")
+      const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+      const countObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target as HTMLElement;
+            const to = parseFloat(el.dataset.countTo || "0");
+            const suffix = el.dataset.countSuffix || "";
+            const prefix = el.dataset.countPrefix || "";
+            const decimals = parseInt(el.dataset.countDecimals || "0", 10);
+            const duration = 1400;
+            const start = performance.now();
+            const tick = (t: number) => {
+              const p = Math.min(1, (t - start) / duration);
+              const value = to * easeOut(p);
+              el.textContent = `${prefix}${value.toFixed(decimals)}${suffix}`;
+              if (p < 1) requestAnimationFrame(tick);
+              else el.textContent = `${prefix}${to.toFixed(decimals)}${suffix}`;
+            };
+            requestAnimationFrame(tick);
+            countObserver.unobserve(el);
+          });
+        },
+        { threshold: 0.4 },
+      );
+
+      const init = () => {
+        document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+        document
+          .querySelectorAll<HTMLElement>("[data-count-to]")
+          .forEach((el) => countObserver.observe(el));
+        initCursorGlow();
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", init);
+      } else {
+        init();
+      }
+    </script>
+  </body>
+</html>

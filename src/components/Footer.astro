@@ -1,0 +1,48 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-[var(--color-line)] mt-32 bg-[var(--color-surface)]">
+  <div class="container-page py-16 grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <span
+          class="grid place-items-center h-8 w-8 rounded-lg bg-[var(--color-ink)] text-[var(--color-bg)] font-display font-semibold"
+          >jb</span
+        >
+        <span class="font-display text-base font-medium tracking-tight">Bolfrey<span class="text-[var(--color-accent)]">.</span>Studio</span>
+      </div>
+      <p class="text-sm text-[var(--color-ink-soft)] max-w-sm leading-relaxed">
+        Webdesign-Studio für regionale Unternehmen. Klare Websites, sauber gebaut,
+        in der Region für die Region.
+      </p>
+    </div>
+
+    <div>
+      <h4 class="text-xs uppercase tracking-widest text-[var(--color-ink-soft)] mb-4">Studio</h4>
+      <ul class="space-y-3 text-sm">
+        <li><a href="/#leistungen" class="hover:text-[var(--color-accent)]">Leistungen</a></li>
+        <li><a href="/#arbeiten" class="hover:text-[var(--color-accent)]">Arbeiten</a></li>
+        <li><a href="/#prozess" class="hover:text-[var(--color-accent)]">Prozess</a></li>
+        <li><a href="/#kontakt" class="hover:text-[var(--color-accent)]">Kontakt</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="text-xs uppercase tracking-widest text-[var(--color-ink-soft)] mb-4">Rechtliches</h4>
+      <ul class="space-y-3 text-sm">
+        <li><a href="/impressum" class="hover:text-[var(--color-accent)]">Impressum</a></li>
+        <li><a href="/datenschutz" class="hover:text-[var(--color-accent)]">Datenschutz</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div
+    class="border-t border-[var(--color-line)] py-6 text-xs text-[var(--color-ink-soft)]"
+  >
+    <div class="container-page flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
+      <span>© {year} Justin Bolfrey. Alle Rechte vorbehalten.</span>
+      <span>Gebaut mit Astro · Gehostet auf Hetzner</span>
+    </div>
+  </div>
+</footer>

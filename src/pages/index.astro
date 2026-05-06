@@ -1,0 +1,41 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Hero from "~/components/Hero.astro";
+import Marquee from "~/components/Marquee.astro";
+import Problem from "~/components/Problem.astro";
+import Trust from "~/components/Trust.astro";
+import Services from "~/components/Services.astro";
+import Process from "~/components/Process.astro";
+import QuoteBreak from "~/components/QuoteBreak.astro";
+import Work from "~/components/Work.astro";
+import Testimonial from "~/components/Testimonial.astro";
+import About from "~/components/About.astro";
+import Contact from "~/components/Contact.astro";
+---
+
+<BaseLayout>
+  <Hero />
+  <Marquee />
+
+  <Problem />
+
+  <QuoteBreak
+    quote="Nichts davon ist Schicksal. <em class='text-[var(--color-accent)] not-italic'>Es ist eine Entscheidung.</em>"
+    variant="light"
+  />
+
+  <Trust />
+  <Services />
+  <Process />
+
+  <QuoteBreak
+    quote="Am Ende zählt nicht der schönste Entwurf — <em class='not-italic opacity-70'>sondern was Sie davon haben.</em>"
+    attribution="Kapitel-Übergang · 04 → 05"
+    variant="dark"
+  />
+
+  <Work />
+  <Testimonial />
+  <About />
+  <Contact />
+</BaseLayout>

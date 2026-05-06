@@ -1,0 +1,70 @@
+---
+const quotes = [
+  {
+    text: "Justin hat verstanden, was ich nicht ausdrücken konnte. Drei Wochen später hatte ich eine Website, über die ich mich nicht mehr schämen muss — und unsere Online-Termine haben sich verdoppelt.",
+    name: "Dr. Maria Lindner",
+    role: "Praxisinhaberin · Würzburg",
+  },
+  {
+    text: "Wir hatten vorher eine Agentur. Sie hat uns 8.000 € berechnet und einen Wartungsvertrag verkauft, den wir nicht gebraucht haben. Justin hat alles besser gemacht, für die Hälfte. Punkt.",
+    name: "Tobias Hartmann",
+    role: "Tischlerei Hartmann · Bad Kissingen",
+  },
+];
+---
+
+<section
+  data-cursor-glow
+  class="py-28 md:py-40 bg-[var(--color-ink)] text-[var(--color-bg)] relative overflow-hidden"
+>
+  <div
+    aria-hidden="true"
+    class="absolute top-0 right-0 h-full w-1/2 bg-[var(--color-accent)]/8 blur-3xl"
+  ></div>
+
+  <div class="container-page relative">
+    <div class="max-w-3xl">
+      <span class="eyebrow reveal" style="color: oklch(75% 0.025 250)">
+        Was Kunden sagen
+      </span>
+      <h2
+        class="reveal reveal-delay-1 mt-6 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight"
+      >
+        Kein Verkaufstext.<br />
+        <span class="text-[var(--color-accent)] italic">Echte Stimmen.</span>
+      </h2>
+    </div>
+
+    <div class="mt-16 md:mt-20 grid md:grid-cols-2 gap-12 md:gap-16">
+      {
+        quotes.map((q, i) => (
+          <figure class={`reveal reveal-delay-${i + 1}`}>
+            <span
+              aria-hidden="true"
+              class="font-display text-7xl text-[var(--color-accent)]/40 leading-none"
+            >
+              „
+            </span>
+            <blockquote class="-mt-6 font-display text-2xl md:text-3xl tracking-tight leading-snug">
+              {q.text}
+            </blockquote>
+            <figcaption class="mt-8 flex items-center gap-4 pt-6 border-t border-[var(--color-bg)]/15">
+              <div class="grid place-items-center h-11 w-11 rounded-full bg-[var(--color-bg)]/10 font-display text-sm">
+                {q.name
+                  .split(" ")
+                  .map((s) => s[0])
+                  .filter((c) => /[A-Z]/.test(c))
+                  .slice(0, 2)
+                  .join("")}
+              </div>
+              <div>
+                <div class="font-medium">{q.name}</div>
+                <div class="text-sm opacity-60">{q.role}</div>
+              </div>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
