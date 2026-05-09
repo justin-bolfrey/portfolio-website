@@ -35,7 +35,7 @@ const total = steps.length;
 
 <section
   id="prozess"
-  class="relative scroll-mt-20 process-section"
+  class="relative scroll-mt-28 process-section"
   style={`min-height: ${total * 100}vh`}
   data-process-stage
 >
@@ -164,7 +164,7 @@ const total = steps.length;
           const numEl = s.querySelector<HTMLElement>("[data-step-number]");
           if (!numEl) return;
           numEl.style.color = i === activeIndex
-            ? "oklch(94% 0.04 45)"
+            ? "var(--color-accent-soft)"
             : "var(--color-line)";
         });
 

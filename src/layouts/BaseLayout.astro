@@ -12,7 +12,7 @@ interface Props {
 }
 
 const {
-  title = "Justin Bolfrey — Webdesign für regionale Unternehmen",
+  title = "setup — Webdesign für regionale Unternehmen",
   description = "Klare, schnelle Websites für Arztpraxen, Kanzleien, Handwerk & Gastronomie. Maßgeschneidertes Design, technisch sauber, DSGVO-konform.",
   image = "/og.png",
 } = Astro.props;
@@ -39,14 +39,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://example.com
     <meta property="og:image" content={image} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="preconnect" href="https://rsms.me/" />
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
     />
 
-    <meta name="theme-color" content="#fafaf6" />
+    <meta name="theme-color" content="#f4f6fb" />
   </head>
   <body class="min-h-screen flex flex-col">
     <ScrollProgress />
@@ -71,29 +71,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://example.com
         { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
       );
 
-      // 2. Cursor-tracking glow on dark sections
-      const initCursorGlow = () => {
-        const sections = document.querySelectorAll<HTMLElement>("[data-cursor-glow]");
-        sections.forEach((sec) => {
-          sec.classList.add("cursor-glow");
-
-          let raf = 0;
-          const move = (e: MouseEvent) => {
-            if (raf) return;
-            raf = requestAnimationFrame(() => {
-              const rect = sec.getBoundingClientRect();
-              sec.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-              sec.style.setProperty("--my", `${e.clientY - rect.top}px`);
-              raf = 0;
-            });
-          };
-          sec.addEventListener("mouseenter", () => sec.classList.add("is-tracking"));
-          sec.addEventListener("mouseleave", () => sec.classList.remove("is-tracking"));
-          sec.addEventListener("mousemove", move);
-        });
-      };
-
-      // 3. Count-up on view (data-count-to="75" data-count-suffix="%")
+      // 2. Count-up on view (data-count-to="75" data-count-suffix="%")
       const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
       const countObserver = new IntersectionObserver(
         (entries) => {
@@ -120,12 +98,78 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? "https://example.com
         { threshold: 0.4 },
       );
 
+      /** Sanfteres Ankern als natives scroll-behavior (weicheres Easing, Dauer abhängig von Distanz). */
+      function easeInOutQuint(t: number) {
+        return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
+      }
+
+      function scrollTopForElement(el: Element) {
+        const rect = el.getBoundingClientRect();
+        const margin = parseFloat(getComputedStyle(el).scrollMarginTop) || 0;
+        return window.scrollY + rect.top - margin;
+      }
+
+      let smoothScrollRaf = 0;
+      function smoothScrollToY(targetY: number, duration: number) {
+        cancelAnimationFrame(smoothScrollRaf);
+        const startY = window.scrollY;
+        const distance = targetY - startY;
+        const t0 = performance.now();
+
+        function frame(now: number) {
+          const elapsed = now - t0;
+          const p = Math.min(1, elapsed / duration);
+          window.scrollTo(0, startY + distance * easeInOutQuint(p));
+          if (p < 1) smoothScrollRaf = requestAnimationFrame(frame);
+        }
+        smoothScrollRaf = requestAnimationFrame(frame);
+      }
+
+      function initSmoothAnchors() {
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) return;
+
+        document.addEventListener(
+          "click",
+          (e) => {
+            const a = (e.target as Element | null)?.closest?.("a");
+            if (!(a instanceof HTMLAnchorElement) || !a.href) return;
+
+            let url: URL;
+            try {
+              url = new URL(a.href);
+            } catch {
+              return;
+            }
+            if (url.origin !== window.location.origin) return;
+            if (!url.hash || url.hash === "#") return;
+
+            const path = url.pathname.replace(/\/$/, "") || "/";
+            const here = window.location.pathname.replace(/\/$/, "") || "/";
+            if (path !== here) return;
+
+            const id = decodeURIComponent(url.hash.slice(1));
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            e.preventDefault();
+            const targetY = scrollTopForElement(el);
+            const dist = Math.abs(targetY - window.scrollY);
+            const duration = Math.min(1650, Math.max(620, dist * 0.72));
+
+            history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+            smoothScrollToY(targetY, duration);
+          },
+          true,
+        );
+      }
+
       const init = () => {
         document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
         document
           .querySelectorAll<HTMLElement>("[data-count-to]")
           .forEach((el) => countObserver.observe(el));
-        initCursorGlow();
+        initSmoothAnchors();
       };
 
       if (document.readyState === "loading") {

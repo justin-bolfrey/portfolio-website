@@ -1,17 +1,20 @@
 ---
+import LogoMark from "~/components/LogoMark.astro";
+
 const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-[var(--color-line)] mt-32 bg-[var(--color-surface)]">
   <div class="container-page py-16 grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
     <div>
-      <div class="flex items-center gap-2 mb-4">
-        <span
-          class="grid place-items-center h-8 w-8 rounded-lg bg-[var(--color-ink)] text-[var(--color-bg)] font-display font-semibold"
-          >jb</span
-        >
-        <span class="font-display text-base font-medium tracking-tight">Bolfrey<span class="text-[var(--color-accent)]">.</span>Studio</span>
-      </div>
+      <a
+        href="/"
+        class="logo-hover-target flex items-center gap-4 mb-6 w-fit"
+        aria-label="Startseite — setup"
+      >
+        <LogoMark idPrefix="logo-ftr" class="h-24 w-24" />
+        <span class="font-brand text-4xl lowercase">setup</span>
+      </a>
       <p class="text-sm text-[var(--color-ink-soft)] max-w-sm leading-relaxed">
         Webdesign-Studio für regionale Unternehmen. Klare Websites, sauber gebaut,
         in der Region für die Region.
@@ -41,7 +44,7 @@ const year = new Date().getFullYear();
     class="border-t border-[var(--color-line)] py-6 text-xs text-[var(--color-ink-soft)]"
   >
     <div class="container-page flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
-      <span>© {year} Justin Bolfrey. Alle Rechte vorbehalten.</span>
+      <span>© {year} setup · Justin Bolfrey. Alle Rechte vorbehalten.</span>
       <span>Gebaut mit Astro · Gehostet auf Hetzner</span>
     </div>
   </div>

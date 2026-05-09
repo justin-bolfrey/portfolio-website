@@ -1,60 +1,386 @@
 ---
 ---
 
-<section class="relative overflow-hidden pt-20 md:pt-28 pb-24 md:pb-32">
-  <div aria-hidden="true" class="absolute inset-0 grid-bg pointer-events-none hero-parallax-slow"></div>
+<section
+  id="hero-section"
+  class="relative isolate box-border flex min-h-[calc(100dvh-7rem)] flex-col justify-center overflow-hidden py-10 md:py-14"
+>
+  <div class="hero-immersive pointer-events-none absolute inset-0 z-0" aria-hidden="true"></div>
 
-  <div class="container-page relative">
-    <div class="max-w-3xl hero-parallax-fast">
-      <span class="eyebrow reveal">Webdesign-Studio · Region</span>
+  <div
+    aria-hidden="true"
+    class="hero-parallax-slow pointer-events-none absolute inset-0 z-[1] opacity-[0.65]"
+  >
+    <div class="grid-bg h-full w-full"></div>
+  </div>
 
+  <div
+    class="container-page relative z-10 flex flex-col gap-12 lg:flex-row lg:items-center lg:justify-between lg:gap-10"
+  >
+    <div class="hero-parallax-fast max-w-5xl min-w-0 flex-1">
       <h1
-        class="reveal reveal-delay-1 font-display mt-6 text-[clamp(2.6rem,6.5vw,5.5rem)] leading-[1.02] font-medium tracking-tight"
+        class="reveal font-display text-[clamp(2.85rem,7.5vw,5.75rem)] leading-[1.02] font-medium tracking-tight text-[var(--color-ink)] drop-shadow-[0_1px_40px_oklch(98%_0.008_265_/0.35)]"
       >
-        Websites, die Ihr<br/>
+        Websites, die Ihr<br />
         <span class="italic text-[var(--color-accent)]">Unternehmen</span> ernst nehmen.
       </h1>
-
-      <p
-        class="reveal reveal-delay-2 mt-8 text-lg md:text-xl text-[var(--color-ink-soft)] max-w-2xl leading-relaxed"
-      >
-        Maßgeschneidertes Design für Arztpraxen, Kanzleien, Handwerk & Gastronomie —
-        <strong class="text-[var(--color-ink)] font-medium">Entwicklung und Hosting aus einer Hand</strong>.
-        SSL inklusive, Server in Deutschland, DSGVO-konform.
-      </p>
-
-      <div class="reveal reveal-delay-3 mt-10 flex flex-wrap gap-3 items-center">
-        <a href="/#kontakt" class="btn btn-primary">
-          Projekt anfragen
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-          </svg>
-        </a>
-        <a href="/#arbeiten" class="btn btn-ghost">Arbeiten ansehen</a>
-      </div>
     </div>
 
     <div
-      class="reveal reveal-delay-4 mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6 md:gap-x-12 max-w-4xl"
+      id="hero-logo-stage"
+      class="hero-logo-stage mx-auto w-[min(78vw,360px)] shrink-0 lg:mx-0 lg:w-[min(38vw,400px)]"
     >
-      {[
-        { k: 12, suffix: "+", v: "Projekte ausgeliefert" },
-        { k: 100, suffix: "", v: "Lighthouse-Score angepeilt" },
-        { k: 2, prefix: "<", suffix: "s", v: "Ladezeit auf 4G" },
-        { k: 1, suffix: ":1", v: "Direkter Ansprechpartner" }
-      ].map((s) => (
-        <div>
-          <div
-            class="font-display text-3xl md:text-4xl tracking-tight tabular-nums"
-            data-count-to={s.k}
-            data-count-suffix={s.suffix}
-            data-count-prefix={s.prefix ?? ""}
-          >
-            {s.prefix ?? ""}0{s.suffix}
-          </div>
-          <div class="mt-1 text-sm text-[var(--color-ink-soft)]">{s.v}</div>
-        </div>
-      ))}
+      <div class="hero-logo-tilt">
+        <svg
+          id="hero-logo-source"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 800 552"
+          fill="none"
+          class="h-auto w-full"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient
+              id="hero-src-top"
+              x1="0"
+              y1="88"
+              x2="800"
+              y2="88"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#0B1020"></stop>
+              <stop offset="1" stop-color="#3F5074"></stop>
+            </linearGradient>
+            <linearGradient
+              id="hero-src-middle"
+              x1="100"
+              y1="320"
+              x2="700"
+              y2="320"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#1E3A5F"></stop>
+              <stop offset="1" stop-color="#5F5F8B"></stop>
+            </linearGradient>
+            <linearGradient
+              id="hero-src-bottom"
+              x1="200"
+              y1="508"
+              x2="600"
+              y2="508"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stop-color="#949FAD"></stop>
+              <stop offset="1" stop-color="#B0A9BB"></stop>
+            </linearGradient>
+          </defs>
+          <rect
+            data-logo-bar="a"
+            x="1"
+            y="0"
+            width="798"
+            height="176"
+            rx="64"
+            fill="url(#hero-src-top)"></rect>
+          <rect
+            data-logo-bar="b"
+            x="100"
+            y="254"
+            width="600"
+            height="132"
+            rx="64"
+            fill="url(#hero-src-middle)"></rect>
+          <rect
+            data-logo-bar="c"
+            x="200"
+            y="464"
+            width="400"
+            height="88"
+            rx="44"
+            fill="url(#hero-src-bottom)"></rect>
+        </svg>
+      </div>
     </div>
   </div>
 </section>
+
+<div
+  id="logo-flight-layer"
+  class="logo-flight-layer pointer-events-none fixed inset-0 z-[50] overflow-visible"
+  aria-hidden="true"
+  hidden
+>
+  <div data-flight-bar="a" class="logo-flight-shell">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 0 798 176" fill="none" preserveAspectRatio="none" class="block h-full w-full">
+      <defs>
+        <linearGradient id="flight-a-g" x1="0" y1="88" x2="800" y2="88" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#0B1020"></stop>
+          <stop offset="1" stop-color="#3F5074"></stop>
+        </linearGradient>
+      </defs>
+      <rect x="1" y="0" width="798" height="176" rx="64" fill="url(#flight-a-g)"></rect>
+    </svg>
+  </div>
+  <div data-flight-bar="b" class="logo-flight-shell">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="100 254 600 132" fill="none" preserveAspectRatio="none" class="block h-full w-full">
+      <defs>
+        <linearGradient id="flight-b-g" x1="100" y1="320" x2="700" y2="320" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#1E3A5F"></stop>
+          <stop offset="1" stop-color="#5F5F8B"></stop>
+        </linearGradient>
+      </defs>
+      <rect x="100" y="254" width="600" height="132" rx="64" fill="url(#flight-b-g)"></rect>
+    </svg>
+  </div>
+  <div data-flight-bar="c" class="logo-flight-shell">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="200 464 400 88" fill="none" preserveAspectRatio="none" class="block h-full w-full">
+      <defs>
+        <linearGradient id="flight-c-g" x1="200" y1="508" x2="600" y2="508" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#949FAD"></stop>
+          <stop offset="1" stop-color="#B0A9BB"></stop>
+        </linearGradient>
+      </defs>
+      <rect x="200" y="464" width="400" height="88" rx="44" fill="url(#flight-c-g)"></rect>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .hero-immersive {
+    background:
+      radial-gradient(
+        ellipse 85% 55% at 18% 38%,
+        color-mix(in oklch, var(--color-accent) 42%, transparent) 0%,
+        transparent 58%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 82% 62%,
+        color-mix(in oklch, var(--color-ink) 22%, transparent) 0%,
+        transparent 55%
+      ),
+      radial-gradient(
+        ellipse 55% 45% at 48% 92%,
+        color-mix(in oklch, var(--color-accent-soft) 90%, transparent) 0%,
+        transparent 50%
+      ),
+      var(--color-bg);
+    filter: blur(50px);
+    transform: translateZ(0);
+    animation: hero-immersive-drift 22s ease-in-out infinite alternate;
+  }
+
+  .hero-immersive::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 75% 60% at 50% 45%,
+      transparent 35%,
+      color-mix(in oklch, var(--color-bg) 88%, transparent) 100%
+    );
+    opacity: 0.85;
+    filter: blur(20px);
+  }
+
+  .hero-logo-tilt {
+    transform-style: preserve-3d;
+    transform: perspective(1100px) rotateX(11deg) rotateY(-20deg);
+    filter: drop-shadow(0 28px 48px oklch(22% 0.045 268 / 0.18));
+  }
+
+  .logo-flight-shell {
+    position: fixed;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    overflow: hidden;
+    box-shadow: 0 18px 44px oklch(22% 0.045 268 / 0.15);
+  }
+
+  @keyframes hero-immersive-drift {
+    0% {
+      transform: translate3d(-2.5%, -1.5%, 0) scale(1);
+    }
+    100% {
+      transform: translate3d(2.5%, 2%, 0) scale(1.06);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-immersive {
+      animation: none;
+    }
+    .hero-logo-tilt {
+      transform: none;
+      filter: drop-shadow(0 12px 24px oklch(22% 0.045 268 / 0.12));
+    }
+  }
+
+  :global(#header-logo-mark [data-logo-bar]) {
+    will-change: opacity, transform;
+  }
+</style>
+
+<script>
+  function clamp01(x) {
+    return Math.max(0, Math.min(1, x));
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function smootherStep(t) {
+    const x = clamp01(t);
+    return x * x * x * (x * (x * 6 - 15) + 10);
+  }
+
+  function initHeroLogoFlight() {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const hero = document.getElementById("hero-section");
+    const heroStage = document.getElementById("hero-logo-stage");
+    const flightLayer = document.getElementById("logo-flight-layer");
+    const headerLogo = document.getElementById("header-logo-mark");
+    const sourceSvg = document.getElementById("hero-logo-source");
+
+    if (!hero || !heroStage || !flightLayer || !headerLogo || !sourceSvg) return;
+
+    const shells = /** @type {HTMLElement[]} */ (
+      ["a", "b", "c"].map((k) => flightLayer.querySelector(`[data-flight-bar="${k}"]`)).filter(Boolean)
+    );
+    if (shells.length !== 3) return;
+
+    /** Kompakte Stafette: Balken a/b/c fliegen klar gestaffelt, aber überlappend. */
+    const windows = [
+      { key: "a", t0: 0.00, t1: 0.58 },
+      { key: "b", t0: 0.18, t1: 0.76 },
+      { key: "c", t0: 0.38, t1: 0.96 },
+    ];
+
+    /** Source-Balken blendet im ersten Viertel der eigenen Reise aus. */
+    const sourceFadeEnd = 0.22;
+    /** Header-Balken blendet im letzten Viertel der eigenen Reise ein. */
+    const headerFadeStart = 0.78;
+
+    function resetHeaderBars(op) {
+      ["a", "b", "c"].forEach((k) => {
+        const el = headerLogo.querySelector(`[data-logo-bar="${k}"]`);
+        if (el instanceof SVGElement) el.style.opacity = op;
+      });
+    }
+
+    function resetSourceBars(op) {
+      ["a", "b", "c"].forEach((k) => {
+        const el = sourceSvg.querySelector(`[data-logo-bar="${k}"]`);
+        if (el instanceof SVGElement) el.style.opacity = op;
+      });
+    }
+
+    const rxScale = { a: 64 / 176, b: 64 / 132, c: 44 / 88 };
+
+    function barProgress(globalT, t0, t1) {
+      return clamp01((globalT - t0) / Math.max(t1 - t0, 0.001));
+    }
+
+    let ticking = false;
+    function tick() {
+      if (reduce) return;
+
+      const scrollRange = Math.max(window.innerHeight * 0.95, 520);
+      const globalT = clamp01(window.scrollY / scrollRange);
+
+      const lastEnd = windows[windows.length - 1].t1;
+      const flightActive = globalT > 0 && globalT < lastEnd + 0.04;
+      flightLayer.hidden = !flightActive;
+
+      shells.forEach((shell, i) => {
+        const key = /** @type {"a"|"b"|"c"} */ (windows[i].key);
+        const win = windows[i];
+
+        const srcEl = sourceSvg.querySelector(`[data-logo-bar="${key}"]`);
+        const tgtEl = headerLogo.querySelector(`[data-logo-bar="${key}"]`);
+        if (!(srcEl instanceof SVGGraphicsElement) || !(tgtEl instanceof SVGGraphicsElement)) return;
+
+        const raw = barProgress(globalT, win.t0, win.t1);
+        const u = easeInOutCubic(raw);
+
+        const from = srcEl.getBoundingClientRect();
+        const to = tgtEl.getBoundingClientRect();
+
+        const left = from.left + (to.left - from.left) * u;
+        const top = from.top + (to.top - from.top) * u;
+        const width = from.width + (to.width - from.width) * u;
+        const height = from.height + (to.height - from.height) * u;
+
+        const rx = rxScale[key] * height;
+        const rotXF = (1 - u) * 11;
+        const rotYF = (1 - u) * -20;
+
+        shell.style.left = `${left}px`;
+        shell.style.top = `${top}px`;
+        shell.style.width = `${Math.max(width, 2)}px`;
+        shell.style.height = `${Math.max(height, 2)}px`;
+        shell.style.borderRadius = `${rx}px`;
+        shell.style.transform = `perspective(900px) rotateX(${rotXF}deg) rotateY(${rotYF}deg)`;
+
+        /** Source: Hero-Balken baut sich ab, sobald sein Flight-Balken losfliegt. */
+        const sourceOp =
+          raw <= 0 ? 1 : 1 - smootherStep(clamp01(raw / sourceFadeEnd));
+        srcEl.style.opacity = String(sourceOp);
+
+        /** Header: Balken baut sich ein, kurz bevor der Flight-Balken eintrifft. */
+        let headerOp = 0;
+        if (raw > headerFadeStart) {
+          headerOp = smootherStep((raw - headerFadeStart) / (1 - headerFadeStart));
+        }
+        if (globalT >= lastEnd + 0.02) {
+          headerOp = 1;
+          tgtEl.style.opacity = "";
+        } else {
+          tgtEl.style.opacity = String(headerOp);
+        }
+
+        /** Flight-Shell: voll sichtbar während der Reise, an den Enden zart ein-/ausgeblendet. */
+        let shellOp = 0;
+        if (flightActive && raw > 0 && raw < 1) {
+          const fadeIn = smootherStep(clamp01(raw / 0.08));
+          const fadeOut = 1 - smootherStep(clamp01((raw - 0.92) / 0.08));
+          shellOp = fadeIn * fadeOut;
+        }
+        shell.style.opacity = String(shellOp);
+      });
+
+      heroStage.style.opacity = "1";
+      heroStage.style.visibility = globalT >= lastEnd + 0.05 ? "hidden" : "visible";
+    }
+
+    function onScrollOrResize() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        tick();
+      });
+    }
+
+    if (reduce) {
+      flightLayer.hidden = true;
+      resetHeaderBars("");
+      resetSourceBars("");
+      heroStage.style.opacity = "1";
+      heroStage.style.visibility = "visible";
+      return;
+    }
+
+    resetHeaderBars("0");
+    resetSourceBars("1");
+
+    flightLayer.hidden = true;
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize, { passive: true });
+    onScrollOrResize();
+  }
+
+  initHeroLogoFlight();
+</script>

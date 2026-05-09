@@ -1,62 +1,108 @@
 ---
+const team = [
+  {
+    first: "Justin",
+    name: "Justin Bolfrey",
+    focus: "Design & Strategie",
+    bio: [
+      "Ich bin Justin und ich übersetze, was Sie sagen, in das, was Ihre Kunden sehen. Ich höre zu, ich entwerfe, ich verteidige Ihre Marke gegen Trends, die in zwei Jahren wieder verschwinden.",
+      "Was Sie von mir nicht bekommen: aufgeblähte Baukasten-Seiten, vorgefertigte Templates, generische Layouts. Was Sie bekommen: ein Design, das nach Ihnen aussieht — nicht nach mir.",
+    ],
+    gradient: "bg-gradient-to-br from-[#0b101f] via-[#141e33] to-[#243652]",
+    glowClass: "absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-[var(--color-accent)]/20 blur-3xl",
+  },
+  {
+    first: "Hannes",
+    name: "Hannes",
+    focus: "Entwicklung & Hosting",
+    bio: [
+      "Ich bin Hannes und ich sorge dafür, dass alles, was wir bauen, schnell, stabil und sicher läuft. Sauberer Code, ehrliche Architektur, kein Plugin-Karussell, keine Cloud-Roulette.",
+      "Sie bekommen einen Server in Deutschland, ein Backup-Konzept, das funktioniert, automatische Updates, Monitoring — und einen Menschen, der drangeht, wenn doch mal etwas hakt.",
+    ],
+    gradient: "bg-gradient-to-bl from-[#0c1222] via-[#162338] to-[#263857]",
+    glowClass: "absolute -top-24 -left-24 h-80 w-80 rounded-full bg-[var(--color-accent)]/15 blur-3xl",
+  },
+];
 ---
 
-<section id="ueber" class="py-24 md:py-32 scroll-mt-20">
-  <div class="container-page grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20 items-start">
-    <div class="reveal">
-      <div
-        class="aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-[#1a2235] to-[#2c3a55] relative"
-      >
-        <div class="absolute inset-0 grid place-items-center">
-          <div class="font-display italic text-7xl text-[var(--color-bg)]/15 tracking-tight">
-            Justin
-          </div>
-        </div>
-        <div
-          class="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 text-[var(--color-bg)]"
-        >
-          <div>
-            <div class="text-xs uppercase tracking-widest opacity-70">Studio</div>
-            <div class="font-display text-2xl mt-1">Bolfrey<span class="text-[var(--color-accent)]">.</span>Studio</div>
-          </div>
-          <div class="text-right">
-            <div class="text-xs uppercase tracking-widest opacity-70">Sitz</div>
-            <div class="font-display text-2xl mt-1">Mainfranken</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <span class="eyebrow reveal">Über mich</span>
+<section id="ueber" class="py-24 md:py-32 scroll-mt-28">
+  <div class="container-page">
+    <div class="max-w-3xl">
+      <span class="eyebrow reveal">Über uns</span>
       <h2
         class="reveal reveal-delay-1 mt-6 font-display text-4xl md:text-5xl leading-[1.05] tracking-tight"
       >
-        Ein Designer.<br />Ein Entwickler.<br />Ein Ansprechpartner.
+        Zwei Köpfe.<br />Ein Studio.<br />Ein Anspruch.
       </h2>
-      <div class="reveal reveal-delay-2 mt-8 space-y-5 text-[var(--color-ink-soft)] leading-relaxed text-lg max-w-xl">
-        <p>
-          Ich bin Justin und ich baue Websites für Unternehmen aus der Region.
-          Keine Agentur mit zwölf Schnittstellen — ich nehme das Briefing auf, ich
-          designe, ich entwickle, ich kümmere mich.
-        </p>
-        <p>
-          Was Sie von mir nicht bekommen: aufgeblähte Baukasten-Seiten, vorgefertigte
-          Templates, monatliche Lizenzen für Tools, die Sie nie nutzen. Was Sie
-          bekommen: eine handgebaute Website, die in fünf Jahren noch genauso
-          schnell lädt wie am ersten Tag.
-        </p>
-      </div>
+      <p class="reveal reveal-delay-2 mt-8 text-[var(--color-ink-soft)] leading-relaxed text-lg max-w-2xl">
+        Hinter <span class="font-brand lowercase">setup</span> stehen zwei: Justin und Hannes. Wir teilen
+        uns Briefing, Design, Code und Pflege — Sie reden immer mit einem von uns,
+        nie mit einer Hotline, nie mit einem Subunternehmer. Keine Agentur-Kette,
+        keine Schnittstellen-Lotterie.
+      </p>
+    </div>
 
-      <div class="reveal reveal-delay-3 mt-10 grid grid-cols-2 gap-6 max-w-md">
-        <div>
-          <div class="font-display text-3xl tracking-tight">7+</div>
-          <div class="text-sm text-[var(--color-ink-soft)] mt-1">Jahre Webdesign</div>
-        </div>
-        <div>
-          <div class="font-display text-3xl tracking-tight">DE</div>
-          <div class="text-sm text-[var(--color-ink-soft)] mt-1">Server in Deutschland</div>
-        </div>
+    <div class="mt-16 md:mt-20 grid md:grid-cols-2 gap-10 md:gap-12">
+      {
+        team.map((person, i) => (
+          <article class={`reveal reveal-delay-${i + 1}`}>
+            <div
+              class={`aspect-[4/5] rounded-2xl overflow-hidden ${person.gradient} relative`}
+            >
+              <div aria-hidden="true" class={person.glowClass} />
+              <div class="absolute inset-0 grid place-items-center">
+                <div class="font-display italic text-7xl text-[var(--color-bg)]/15 tracking-tight">
+                  {person.first}
+                </div>
+              </div>
+              <div
+                class="absolute bottom-6 left-6 right-6 flex items-end justify-between gap-4 text-[var(--color-bg)]"
+              >
+                <div>
+                  <div class="text-xs uppercase tracking-widest opacity-70">Schwerpunkt</div>
+                  <div class="font-display text-xl md:text-2xl mt-1 leading-tight">
+                    {person.focus}
+                  </div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs uppercase tracking-widest opacity-70">Sitz</div>
+                  <div class="font-display text-xl md:text-2xl mt-1">Mainfranken</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <h3 class="font-display text-2xl md:text-3xl tracking-tight">
+                {person.name}
+              </h3>
+              <p class="mt-1 text-sm uppercase tracking-widest text-[var(--color-accent)]">
+                {person.focus}
+              </p>
+              <div class="mt-5 space-y-4 text-[var(--color-ink-soft)] leading-relaxed">
+                {person.bio.map((p) => <p>{p}</p>)}
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="reveal mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl border-t border-[var(--color-line)] pt-10">
+      <div>
+        <div class="font-display text-3xl tracking-tight">2</div>
+        <div class="text-sm text-[var(--color-ink-soft)] mt-1">Köpfe, ein Studio</div>
+      </div>
+      <div>
+        <div class="font-display text-3xl tracking-tight">7+</div>
+        <div class="text-sm text-[var(--color-ink-soft)] mt-1">Jahre Webdesign</div>
+      </div>
+      <div>
+        <div class="font-display text-3xl tracking-tight">DE</div>
+        <div class="text-sm text-[var(--color-ink-soft)] mt-1">Server in Deutschland</div>
+      </div>
+      <div>
+        <div class="font-display text-3xl tracking-tight">1:1</div>
+        <div class="text-sm text-[var(--color-ink-soft)] mt-1">Direkter Kontakt</div>
       </div>
     </div>
   </div>
